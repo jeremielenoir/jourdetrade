@@ -1,13 +1,9 @@
 import * as restify from 'restify';
-
-let respond = (req, res, next) => {
-  res.send('hello ' + req.params.name);
-  next();
-};
+import Orders from './ressources/orders/orders.js';
 
 let server = restify.createServer();
-server.get('/hello/:name', respond);
-server.head('/hello/:name', respond);
+
+let order = new Orders(server);
 
 server.listen(8080, function() {
   console.log('%s listening at %s', server.name, server.url);
