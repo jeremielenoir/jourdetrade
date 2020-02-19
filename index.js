@@ -1,6 +1,7 @@
 import * as restify from 'restify';
 import Orders from './ressources/orders/orders.js';
 import * as CoinbasePro from 'coinbase-pro';
+import socketIo from 'socket.io';
 
 const publicClient = new CoinbasePro.PublicClient();
 
@@ -8,9 +9,9 @@ const websocket = new CoinbasePro.WebsocketClient(
     ['ZRX-EUR', 'ETC-EUR', 'BTC-EUR'],
     'wss://ws-feed.pro.coinbase.com',
     {
-      key: '3b96ccbdfe1ed7c2acff9eedfba8b452',
-      secret: 'CabrneiHuoAjRtnQrNjI7p1cB64uxMQDB3qIdsrWjvIgQd9hwzU4VZF248oH8xLwlL4wm9q/vwdoWXSSkTTGbA==',
-      passphrase: '7b0wu35mqbx',
+      key: '***',
+      secret: '***',
+      passphrase: '***',
     },
     {channels : ['ticker']}
   );
@@ -20,7 +21,7 @@ const websocket = new CoinbasePro.WebsocketClient(
 websocket.on('message', data => {
   /* work with data */
   if(data.type == 'ticker'){
-    console.log('TICKER', data);
+    //console.log('TICKER', data);
   }
   
 });
@@ -41,10 +42,29 @@ publicClient.getProductTicker('ZRX-EUR').then(data => {
   .catch(error => {
     // handle the error
   });
+
+
 let server = restify.createServer();
 
 let order = new Orders(server);
 
-server.listen(8080, function() {
+var app = server.listen(8080, function() {
   console.log('%s listening at %s', server.name, server.url);
+});
+
+const io = socketIo(app);
+
+io.on("connection", socket => {
+  console.log("New client connected");
+
+  websocket.on('message', data => {
+    /* work with data */
+    if(data.type == 'ticker'){
+      console.log('TICKER', data);
+      io.emit("ticker", data); 
+    }
+    
+  });
+  
+  socket.on("disconnect", () => clearInterval(interval));
 });

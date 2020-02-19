@@ -10,7 +10,7 @@ export default class Orders{
     }
 
     getOrders(req, res, next){
-        res.send('hello ' + req.params.id);
+        res.send({ response: "I am alive" }).status(200);
         next();
     }
 
