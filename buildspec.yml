@@ -10,6 +10,7 @@ phases:
       nodejs: 12
     commands:
       - echo Entered the install phase...
+      - npm install
       - cd frontend && npm install
     finally:
       - echo This always runs even if the update or install command fails 
@@ -22,9 +23,8 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Build started on `date`
-      - npm install
       - npm run build
-      - cd ../frontend && npm run build
+      - cd frontend && npm run build
       - mkdir ../dist/public
       - cp -R ./build/* ../dist/public/
     finally:
