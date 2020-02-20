@@ -23,8 +23,8 @@ phases:
       - echo Entered the build phase...
       - echo Build started on `date`
       - cd ../frontend && npm run build
-      - mkdir ../server/public
-      - cp -R ./dist/* ../server/public/
+      - mkdir ../dist/public
+      - cp -R ./build/* ../dist/public/
     finally:
       - echo This always runs even if the install command fails
   post_build:
@@ -34,7 +34,7 @@ phases:
 
 artifacts:
   files:
-    - 'server/**/*'
+    - 'dist/**/*'
     - 'scripts/**/*'
     - 'appspec.yml'
   name: jourdetrade
