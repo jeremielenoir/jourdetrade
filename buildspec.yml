@@ -23,6 +23,7 @@ phases:
     commands:
       - echo Entered the build phase...
       - echo Build started on `date`
+      - cd ..
       - npm run build
       - ls -lia
       - cd frontend && npm run build
