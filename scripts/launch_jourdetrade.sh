@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /home/ec2-user/jourdetrade
-pm2 restart dist/index.js
+cd /home/ec2-user/jourdetrade/dist
+pm2 restart index.js
