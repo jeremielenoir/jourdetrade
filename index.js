@@ -18,13 +18,7 @@ const websocket = new CoinbasePro.WebsocketClient(
   console.log('websocket', websocket.channels);
 
 
-websocket.on('message', data => {
-  /* work with data */
-  if(data.type == 'ticker'){
-    //console.log('TICKER', data);
-  }
-  
-});
+
 websocket.on('error', err => {
   /* handle error */
 });
@@ -35,22 +29,25 @@ websocket.on('open', () => {
   //websocket.subscribe({ product_ids: ['ZRX-EUR'], channels: ['ticker', 'user'] });
 });
 
-publicClient.getProductTicker('ZRX-EUR').then(data => {
-    // work with data
-    //console.log(data);
-  })
-  .catch(error => {
-    // handle the error
-  });
 
 
 let server = restify.createServer();
 
+server.get('/*',
+  restify.plugins.serveStatic({
+    directory: './public',
+    default: 'index.html'
+  })
+);
+
 let order = new Orders(server);
+
 
 var app = server.listen(8080, function() {
   console.log('%s listening at %s', server.name, server.url);
 });
+
+
 
 const io = socketIo(app);
 
