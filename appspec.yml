@@ -1,8 +1,8 @@
-version: 0.0
+version: 1.0
 os: linux
 files:
   - source: ./dist/package.json
-    destination: /home/ec2-user/jourdetrade
+    destination: /home/ec2-user
 hooks:
   ApplicationStop:
     - location: scripts/stop_server
