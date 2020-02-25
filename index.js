@@ -9,9 +9,9 @@ const websocket = new CoinbasePro.WebsocketClient(
     ['ZRX-EUR', 'ETC-EUR', 'BTC-EUR'],
     'wss://ws-feed.pro.coinbase.com',
     {
-      key: '***',
-      secret: '***',
-      passphrase: '***',
+      key: 'e76e42727b295fe98b2e460fa0f5cb99',
+      secret: '1OmBIS95rsKghPVcOPl2a45UHeACiGI2iZH/7FE71U2+afskF5iy7h7VYGpxXSdL5+AHZXYgAZMeesb9egS6sA==',
+      passphrase: 'marijuana',
     },
     {channels : ['ticker']}
   );
@@ -66,5 +66,5 @@ io.on("connection", socket => {
     
   });
   
-  socket.on("disconnect", () => clearInterval(interval));
+  socket.on("disconnect", () => {});
 });
