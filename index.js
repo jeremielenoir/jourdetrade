@@ -35,7 +35,7 @@ let server = restify.createServer();
 
 server.get('/*',
   restify.plugins.serveStatic({
-    directory: './frontend/build',
+    directory: './public',
     default: 'index.html'
   })
 );
