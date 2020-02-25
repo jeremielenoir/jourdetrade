@@ -33,17 +33,17 @@ websocket.on('open', () => {
 
 let server = restify.createServer();
 
-server.get('/*',
+/*server.get('/*',
   restify.plugins.serveStatic({
-    directory: './public',
+    directory: './frontend/build',
     default: 'index.html'
   })
-);
+);*/
 
 let order = new Orders(server);
 
 
-var app = server.listen(8080, function() {
+var app = server.listen(80, function() {
   console.log('%s listening at %s', server.name, server.url);
 });
 

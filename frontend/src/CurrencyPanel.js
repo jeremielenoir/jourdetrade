@@ -8,7 +8,7 @@ import io from "socket.io-client";
 
       this.state = {
         response: false,
-        endpoint: "http://localhost:8080"
+        endpoint: "/"
       };
       
 
