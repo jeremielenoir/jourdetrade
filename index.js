@@ -33,12 +33,12 @@ websocket.on('open', () => {
 
 let server = restify.createServer();
 
-/*server.get('/*',
+server.get('/*',
   restify.plugins.serveStatic({
     directory: './frontend/build',
     default: 'index.html'
   })
-);*/
+);
 
 let order = new Orders(server);
 
