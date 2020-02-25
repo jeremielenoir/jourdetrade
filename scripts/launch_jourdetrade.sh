@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /home/ec2-user/roodeo
-pm2 restart server.js
+cd /home/ec2-user/jourdetrade
+pm2 restart dist/server.js
