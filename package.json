@@ -18,7 +18,7 @@
   "dependencies": {
     "coinbase-pro": "^0.9.0",
     "restify": "^8.5.1",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.4.0",
     "watershed": "^0.4.0"
   },
   "devDependencies": {
